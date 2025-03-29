@@ -14,6 +14,8 @@ Pop → Remove the top element.
 
 Peek → View the top element without removing it.
 
+Peep → View any specific element from the top without removing it.
+
 Display → Show all elements of the stack.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -175,6 +177,56 @@ Decreases top by 1 to remove the element.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Peek Operation
+Peek means viewing the top element of the stack without removing it.
+It helps to check what is on the top of the stack.
+
+Example:
+
+Stack:
+
+| 30 | ← top
+| 20 |
+| 10 |
+|____|
+top = 2
+
+Peek() → Shows 30 but does not remove it.
+
+
+
+Pseudocode:
+
+Algorithm Peek()
+{
+    if (top == -1) then
+        print "Stack is Empty"
+        return
+    else
+        print Stack[top]
+}
+
+
+
+
+Algorithm:
+Algorithm Peek(Stack, top)
+{
+    if (top == -1) then
+        Print "Stack is Empty"
+        return
+    else
+        Print Stack[top]
+}
+
+
+Explanation:
+Step 1: Checks if the stack is empty (top == -1).
+Step 2: If empty → Prints "Stack is Empty" message.
+Step 3: If not empty → Prints the top element → Stack[top].
+Note: The element is not removed, just viewed.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

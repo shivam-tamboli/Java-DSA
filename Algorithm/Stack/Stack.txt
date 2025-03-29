@@ -20,7 +20,8 @@ Display → Show all elements of the stack.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Push- Push means inserting an element at the top of the stack.
+Push Operation 
+Push means inserting an element at the top of the stack.
 
 
 Let's understand with the example then we will move to the algorithm.
@@ -284,7 +285,75 @@ Note: No removal of element, only viewing.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Display Operation
+Display means showing all the elements of the stack from top to bottom without removing them.
 
+Example: 
+
+stack:
+
+| 30 | ← top
+| 20 |
+| 10 |
+|____|
+top = 2
+
+Display() → Output:
+30
+20
+10
+
+
+if stack is empty:
+
+|    |
+|____|
+top = -1
+
+Display() → Output:
+Stack is Empty
+
+
+
+Pseudocode:
+
+Algorithm display()
+{
+    if (top == -1) then
+        print "Stack is Empty"
+        return
+    else
+        for i ← top to 0 do
+            print Stack[i]
+}
+
+
+
+Algorithm:
+
+Algorithm Display(Stack, top)
+{
+    if (top == -1) then
+        Print "Stack is Empty"
+        return
+    else
+        for i ← top to 0 do
+            Print Stack[i]
+}
+
+
+Explanation:
+Algorithm Display(Stack, top) → This is the name of the algorithm and the parameters.
+
+if (top == -1) then → Checks if the stack is empty.
+
+Print "Stack is Empty" → If empty, shows an empty message.
+
+for i ← top to 0 do → If not empty, prints all elements from top to bottom.
+
+Print Stack[i] → Prints each element.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

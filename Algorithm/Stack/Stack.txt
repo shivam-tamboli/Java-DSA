@@ -20,7 +20,6 @@ Display → Show all elements of the stack.
 
 Push- Push means inserting an element at the top of the stack.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Let's understand with the example then we will move to the algorithm.
 
@@ -52,7 +51,7 @@ Stack:
 | 10 |
 |____|
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 Pseudocode:
 
@@ -94,6 +93,89 @@ Step 1: Checks if the stack is full (top == max-1 → Because array index starts
 Step 2: If not full → Increase top by 1 and insert the item at Stack[top].
 
 Stack Overflow: When there is no space left to insert.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pop Operation
+Pop means removing an element from the top of the stack.
+
+Example:
+
+Initial Stack:
+
+| 30 | ← top
+| 20 |
+| 10 |
+|____|
+top = 2
+
+
+
+Pop() → Removes 30
+| 20 | ← top
+| 10 |
+|____|
+top = 1
+
+
+
+| 10 | ← top
+|____|
+top = 0
+
+
+|    |
+|____|
+top = -1 → Stack is empty
+If you try to pop again → Underflow condition (nothing to remove).
+
+
+Pseudocode:
+
+Algorithm pop() {
+    if (top == -1) {
+        print("Underflow");
+        return;
+    }
+    else {
+        print(Stack[top]);
+        top--;
+    }
+}
+
+
+
+
+
+Algorithm:
+
+Algorithm Pop(Stack, top)
+{
+    if (top == -1) then
+        Print "Underflow"
+        return
+    else
+        Print Stack[top]
+        top ← top - 1
+}
+
+Explanation 
+
+Algorithm Pop(Stack, top): Name of the algorithm and parameters.
+
+if (top == -1): Checks if the stack is empty.
+
+Underflow: Stack is empty, so nothing to pop.
+
+Else: If stack is not empty:
+
+Prints the top element (being removed).
+
+Decreases top by 1 to remove the element.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 

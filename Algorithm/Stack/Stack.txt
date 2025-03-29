@@ -1,6 +1,6 @@
 															Stack
 
-Stack-
+Stack:
 A stack is a linear data structure that follows the LIFO (Last In, First Out) principle.
 This means that the last element added is the first one to be removed—just like a stack of plates.
 
@@ -227,6 +227,66 @@ Step 3: If not empty → Prints the top element → Stack[top].
 Note: The element is not removed, just viewed.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Peep Operation
+Peep means checking any element at a specific position from the top of the stack without removing it.
+
+Example:
+
+Stack:
+
+| 30 | ← top
+| 20 |
+| 10 |
+|____|
+top = 2
+
+If Peep(2) → prints 20
+If Peep(3) → prints 10
+
+Formula used: Stack[top - i + 1]
+
+Where i = position from top.
+
+
+
+
+Pseudocode:
+
+Algorithm Peep(i)
+{
+    if (top - i + 1 < 0) then
+        print "Invalid Position"
+        return
+    else
+        print Stack[top - i + 1]
+}
+
+
+
+Algorithm:
+Algorithm Peep(Stack, top, i)
+{
+    if (top - i + 1 < 0) then
+        Print "Invalid Position"
+        return
+    else
+        Print Stack[top - i + 1]
+}
+
+
+Explanation:
+Step 1: Checks if the position is valid → (top - i + 1 >= 0).
+Step 2: If invalid → Shows "Invalid Position".
+Step 3: If valid → Prints the element at position → Stack[top - i + 1].
+Note: No removal of element, only viewing.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
 

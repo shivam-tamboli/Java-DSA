@@ -1,0 +1,8 @@
+													Infix to Postfix Conversion
+Definition:
+Infix to Postfix conversion is the process of transforming a mathematical expression written in infix notation (where operators are placed between operands) into postfix notation (where operators are placed after their operands).
+
+In postfix notation, also called Reverse Polish Notation (RPN), parentheses are not required, and the order of operations is inherently maintained. This notation is easier for computers to evaluate using a stack-based approach.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

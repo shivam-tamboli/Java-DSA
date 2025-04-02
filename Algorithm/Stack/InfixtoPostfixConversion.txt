@@ -1,8 +1,169 @@
 													Infix to Postfix Conversion
-Definition:
+
+ Definition
 Infix to Postfix conversion is the process of transforming a mathematical expression written in infix notation (where operators are placed between operands) into postfix notation (where operators are placed after their operands).
 
-In postfix notation, also called Reverse Polish Notation (RPN), parentheses are not required, and the order of operations is inherently maintained. This notation is easier for computers to evaluate using a stack-based approach.
+In postfix notation (also called Reverse Polish Notation or RPN), parentheses are not required, and the order of operations is inherently maintained. This makes it easier for computers to evaluate using a stack-based approach.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Why Use a Stack?
+A stack is a data structure that follows Last In, First Out (LIFO). This means the last element added is the first one to be removed. We use a stack in this algorithm to store operators and ensure correct precedence when building the postfix expression.
 
+Example:
+- In infix notation: `A + B * C`
+- Multiplication `*` has **higher precedence** than addition `+`.
+- The stack helps process this correctly, resulting in **postfix expression**: `ABC*+`.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Operator Precedence and Stack Behavior
+
+Operator Precedence Table
+| Operator | Precedence | Associativity |
+|----------|------------|---------------|
+| ( )      | Highest    | 	-            |
+| ^        | 3          | Right to Left |
+| * /      | 2          | Left to Right |
+| + -      | 1          | Left to Right |
+
+Stack Behavior Based on Operator Precedence
+- Higher precedence operators are pushed onto the stack.
+- Equal or lower precedence operators cause popping from the stack to output until a lower precedence operator is found.
+
+	Handling Parentheses `( )`
+- `(` is always pushed onto the stack.
+- `)` causes popping from the stack to output until **`(`** is found (then `(` is discarded).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Understanding Q and P
+
+	Q (Input Expression)
+- `Q` represents the **input infix expression** that needs to be converted into postfix.
+- Example: If the user enters **`A + B * C`**, then `Q = "A+B*C"`.
+- The program scans `Q` from **left to right** and processes each character.
+
+	P (Output Postfix Expression)
+- P is the **output** where the converted **postfix expression** is stored.
+- As we process each character from `Q`, we build `P` step by step.
+- Example: If `Q = "A+B*C"`, then the final **`P = "ABC*+"`**.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Pseudocode
+
+Procedure POLISH(Q, P):
+1. Push '(' onto stack & add ')' at the end of Q.
+2. Scan Q from left to right until the stack is empty.
+3. If an operand is encountered, add it to P.
+4. If a left parenthesis '(' is encountered, push it onto stack.
+5. If an operator is encountered:
+      a. Pop from stack and add to P while precedence(stack top) >= precedence(operator).
+      b. Push operator onto stack.
+6. If right parenthesis ')' encountered:
+      a. Pop from stack and add to P until a left parenthesis '(' is encountered.
+      b. Remove the left parenthesis.
+7. Exit.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Algorithm
+
+Algorithm POLISH(Q, P):
+1. Push '(' onto stack.
+2. Append ')' to end of Q.
+3. For each character in Q from left to right:
+    a. If character is an operand, append to P.
+    b. Else if character is '(', push to stack.
+    c. Else if character is an operator:
+        i. While stack is not empty and precedence(stack top) >= precedence(operator),
+           pop from stack and append to P.
+       ii. Push operator to stack.
+    d. Else if character is ')':
+        i. While stack is not empty and top is not '(',
+           pop from stack and append to P.
+       ii. Pop '(' from stack.
+4. Exit.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Java Implementation
+	java
+import java.util.Stack;
+
+public class InfixToPostfix {
+
+    // Function to return precedence of operators
+    private static int precedence(char ch) {
+        switch (ch) {
+            case '+': case '-': return 1;
+            case '*': case '/': return 2;
+            case '^': return 3;
+            default: return -1;
+        }
+    }
+
+    // Function to convert infix to postfix
+    public static String infixToPostfix(String Q) {
+        Stack<Character> stack = new Stack<>();
+        StringBuilder P = new StringBuilder();
+
+        // Step 1: Append ')' to end and push '(' to stack
+        Q = "(" + Q + ")";
+        stack.push('(');
+
+        // Step 2: Scan Q from left to right
+        for (char ch : Q.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                P.append(ch);
+            }
+            else if (ch == '(') {
+                stack.push(ch);
+            }
+            else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
+                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(ch)) {
+                    P.append(stack.pop());
+                }
+                stack.push(ch);
+            }
+            else if (ch == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    P.append(stack.pop());
+                }
+                stack.pop(); // Remove '('
+            }
+        }
+        return P.toString();
+    }
+
+    public static void main(String[] args) {
+        String Q = "A+B*C"; // Example input
+        String P = infixToPostfix(Q);
+        System.out.println("Infix Expression: " + Q);
+        System.out.println("Postfix Expression: " + P);
+    }
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Example Execution
+	Input:
+
+A + B * C
+
+	Step-by-Step Execution for Q = "A+B*C"
+
+| Step | Read Character | Stack Content | Postfix (P) | Explanation |
+|------|--------------|--------------|-------------|-----------------------------------------------|
+| 1    | `(`          | `(`          |             | Push `(` as starting bracket 				|
+| 2    | `A`          | `(`          | `A`         | Operand directly goes to output 			|
+| 3    | `+`          | `(+`         | `A`         | Push `+` (stack empty after `(`) 			|
+| 4    | `B`          | `(+`         | `AB`        | Operand directly goes to output 			|
+| 5    | `*`          | `(+ *`       | `AB`        | `*` has higher precedence than `+`, so push it|
+| 6    | `C`          | `(+ *`       | `ABC`       | Operand directly goes to output 			|
+| 7    | `)`          |              | `ABC*+`     | Pop `*` then `+`, output them 			|
+----------------------------------------------------------------------------------------------------
+	Output:
+
+Infix Expression: A+B*C
+Postfix Expression: ABC*+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

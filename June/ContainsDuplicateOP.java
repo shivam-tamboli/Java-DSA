@@ -20,18 +20,18 @@ import java.util.*;
 
 public class ContainsDuplicateOP{
 
-	public static boolean hasDuplicate(int[] nums){
+	public static boolean hasDuplicate(int[] nums){//create a method boolean type.
 	
-	HashSet<Integer> seen = new HashSet<>();
+	HashSet<Integer> seen = new HashSet<>();//create a HashSet.
 	
-	for(int num : nums){
-	if(seen.contains(num)){
-		return true;
+	for(int num : nums){//Iterate in an array.
+	if(seen.contains(num)){//if number occurs again.
+		return true;//return true.
 		//break;
 			}
-	seen.add(num);
+	seen.add(num);//if not then add it into a HashSet.
 		}
-	return false;
+	return false;//not found return flase.
 	
 	}
 	
@@ -41,9 +41,9 @@ public class ContainsDuplicateOP{
 
 	int[] nums = {1,2,3,3};//an array.
 
-	boolean result = hasDuplicate(nums);
+	boolean result = hasDuplicate(nums);//create var and call method inside var with parameters.
 	
-	System.out.println(result);
+	System.out.println(result);//print the var
 	
 	
 	}

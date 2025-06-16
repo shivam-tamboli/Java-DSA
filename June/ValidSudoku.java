@@ -2,7 +2,7 @@
 
 NeetCode : Valid Sudoku
 
-ou are given a 9 x 9 Sudoku board board. A Sudoku board is valid if the following rules are followed:
+You are given a 9 x 9 Sudoku board board. A Sudoku board is valid if the following rules are followed:
 
 Each row must contain the digits 1-9 without duplicates.
 Each column must contain the digits 1-9 without duplicates.

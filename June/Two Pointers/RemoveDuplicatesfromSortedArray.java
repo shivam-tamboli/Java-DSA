@@ -4,6 +4,11 @@ public class RemoveDuplicatesfromSortedArray{
 
 	public static int RemoveDuplicates(int[] nums){
 
+	/*
+	*Time Complexity : O(n)
+	*Space Complexity : O(1)
+	*/
+
 	//start from [1] index because, [0] element always unique.
 	
 	//initial pointer.

@@ -49,41 +49,39 @@ import java.util.*;
 public class Anagrams{
 
 	/*
-	*Time Complexity : O(n log n)
-	* - Sorting both strings of length n -> O(n log n)
-	* - Comparison and conversion -> O(n)
-	* - Total per test case : O(n log n)
-
-
-	*Space Complexity : O(n)
-	* - Two characters arrays of length n -> O(n) 
+	*Time Complexity : O(n)
+	*Space Complexity : O(1)	 
 	*/
 
 	public static char isAnagram(String s, String t){
-	
-	
-	//if s is not equal to t, return false.
-	if(s.length() != t.length()){
-		return 'N';
-	}
 
-	//convert strings to character.
-	char[] a = s.toCharArray();
-	
-	char[] b = t.toCharArray();
+		//if s is not equal to t return N.
+		if(s.length() !=  t.length()){
+			return 'N';
+			}
 
-	//sort the arrays.
-	Arrays.sort(a);
-	Arrays.sort(b);
+		//create a map stores freq of String.
+		HashMap<Character, Integer> map1 = new HashMap<>();
 
-	//if a and b are equals to each other return y. if not return n.
-	if(Arrays.equals(a, b)){
-		return 'Y';
-		}	
-		else{
-		return 'N';
+		HashMap<Character, Integer> map2 = new HashMap<>();
+
+
+		//stores characters into maps.
+		for(char c : s.toCharArray()){
+			map1.put(c, map1.getOrDefault(c , 0) + 1);
+			}
+
+		for(char c : t.toCharArray()){
+			map2.put(c, map2.getOrDefault(c , 0) + 1);
+			}
+			
+		//compare if same return Y, if not return N.
+		if(map1.equals(map2)){
+			return 'Y';
+			}else{
+			return 'N';
+			}
 		}
-	}
 
 	public static void main(String[] args){
 
